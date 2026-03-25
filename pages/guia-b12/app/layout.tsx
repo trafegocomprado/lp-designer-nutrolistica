@@ -1,21 +1,6 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['700'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Guia de Suplementação da B12 para Vegetarianos e Veganos | Nutrolística',
@@ -46,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="pt-BR">
       <head>
         {/* Meta Pixel — Dataset ID 1571028581053350 */}
         <Script id="meta-pixel" strategy="afterInteractive">
