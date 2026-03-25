@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image'
+
 const steps = [
   {
     num: '1',
@@ -57,45 +59,16 @@ export default function SectionComoFunciona() {
             ))}
           </div>
 
-          {/* Mockup placeholder */}
+          {/* Mockup */}
           <div className="flex-shrink-0 md:w-[42%] flex justify-center">
-            <div
-              className="w-full rounded-2xl flex flex-col items-center justify-center text-center gap-3"
-              style={{
-                background: '#F0F4F0',
-                border: '2px dashed #1B5E40',
-                padding: '36px 24px',
-                minHeight: '220px',
-              }}
-            >
-              <svg
-                width="64"
-                height="64"
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect x="4" y="12" width="36" height="28" rx="3" stroke="#1B5E40" strokeWidth="2.5" fill="#D6EAD6" />
-                <rect x="8" y="16" width="28" height="20" rx="1.5" fill="#1B5E40" opacity="0.15" />
-                <rect x="40" y="20" width="20" height="30" rx="3" stroke="#1B5E40" strokeWidth="2.5" fill="#D6EAD6" />
-                <rect x="43" y="24" width="14" height="20" rx="1" fill="#1B5E40" opacity="0.15" />
-                <rect x="14" y="42" width="12" height="2" rx="1" fill="#1B5E40" opacity="0.4" />
-                <rect x="10" y="52" width="38" height="2.5" rx="1.25" fill="#1B5E40" opacity="0.3" />
-              </svg>
-              <p
-                className="font-dm text-[#1B5E40] font-semibold"
-                style={{ fontSize: '12px', opacity: 0.7, lineHeight: 1.5 }}
-              >
-                [PLACEHOLDER]
-                <br />
-                Mockup do produto em dispositivos
-                <br />
-                (computador + tablet + celular,
-                <br />
-                mostrando a interface do guia)
-              </p>
-            </div>
+            <Image
+              src="/mockup-dispositivos.webp"
+              alt="Guia de Suplementação da B12 em computador, tablet e celular"
+              width={768}
+              height={512}
+              className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>

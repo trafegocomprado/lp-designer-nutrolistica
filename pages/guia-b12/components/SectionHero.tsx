@@ -64,48 +64,14 @@ export default function SectionHero() {
 
           {/* Right — product mockup */}
           <div className="flex-shrink-0 md:w-[45%] flex justify-center">
-            <div
-              className="w-full max-w-sm md:max-w-none rounded-2xl overflow-hidden"
-              style={{
-                background: '#F0F4F0',
-                minHeight: '280px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: '2px dashed #1B5E40',
-                padding: '32px 24px',
-                textAlign: 'center',
-                gap: '12px',
-              }}
-            >
-              {/* Placeholder — mockup do produto em dispositivos */}
-              <svg
-                width="64"
-                height="64"
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <rect x="4" y="12" width="36" height="28" rx="3" stroke="#1B5E40" strokeWidth="2.5" fill="#D6EAD6" />
-                <rect x="8" y="16" width="28" height="20" rx="1.5" fill="#1B5E40" opacity="0.15" />
-                <rect x="40" y="20" width="20" height="30" rx="3" stroke="#1B5E40" strokeWidth="2.5" fill="#D6EAD6" />
-                <rect x="43" y="24" width="14" height="20" rx="1" fill="#1B5E40" opacity="0.15" />
-                <rect x="14" y="42" width="12" height="2" rx="1" fill="#1B5E40" opacity="0.4" />
-                <rect x="10" y="52" width="38" height="2.5" rx="1.25" fill="#1B5E40" opacity="0.3" />
-              </svg>
-              <p
-                className="font-dm text-[#1B5E40] font-semibold"
-                style={{ fontSize: '13px', opacity: 0.7, lineHeight: 1.5 }}
-              >
-                [PLACEHOLDER]
-                <br />
-                Mockup do produto em dispositivos
-                <br />
-                (computador + tablet + celular)
-              </p>
-            </div>
+            <Image
+              src="/mockup-dispositivos.webp"
+              alt="Guia de Suplementação da B12 em computador, tablet e celular"
+              width={768}
+              height={512}
+              className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
+              priority
+            />
           </div>
         </div>
       </div>
