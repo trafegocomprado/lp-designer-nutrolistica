@@ -61,18 +61,14 @@ export default function SectionComoFunciona() {
 
           {/* Mockup */}
           <div className="flex-shrink-0 md:w-[42%] flex justify-center">
-            <picture>
-              <source srcSet="/mockup-dispositivos.avif" type="image/avif" />
-              <source srcSet="/mockup-dispositivos.webp" type="image/webp" />
-              <Image
-                src="/mockup-dispositivos.webp"
-                alt="Guia de Suplementação da B12 em computador, tablet e celular"
-                width={768}
-                height={512}
-                className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
-                loading="lazy"
-              />
-            </picture>
+            <Image
+              src="/mockup-dispositivos.webp"
+              alt="Guia de Suplementação da B12 em computador, tablet e celular"
+              width={768}
+              height={512}
+              className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
