@@ -1,9 +1,5 @@
-'use client'
-
 import Image from 'next/image'
-import { trackContact } from '@/lib/trackContact'
-
-const CTA_LINK = 'https://pay.kiwify.com.br/9LRPR3r'
+import HeroCta from './HeroCta'
 
 export default function SectionHero() {
   return (
@@ -48,21 +44,11 @@ export default function SectionHero() {
               Sem contradições, sem achismo, sem dúvida sobrando.
             </p>
 
-            {/* CTA */}
-            <div className="flex flex-col items-center md:items-start gap-3">
-              <a href={CTA_LINK} onClick={trackContact} className="btn-amber w-full sm:w-auto text-center">
-                Quero definir minha B12 agora — R$97
-              </a>
-              <p
-                className="font-dm text-[#1A1A2E] text-center md:text-left"
-                style={{ fontSize: '13px', opacity: 0.6 }}
-              >
-                Acesso imediato · Garantia de 7 dias · Pagamento seguro
-              </p>
-            </div>
+            {/* CTA — Client Component isolado para não tornar o Hero inteiro 'use client' */}
+            <HeroCta />
           </div>
 
-          {/* Right — product mockup */}
+          {/* Right — product mockup (Server Component = presente no HTML inicial = LCP descoberto imediatamente) */}
           <div className="flex-shrink-0 md:w-[45%] flex justify-center">
             <Image
               src="/mockup-dispositivos.webp"
@@ -72,6 +58,7 @@ export default function SectionHero() {
               className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
               priority
               loading="eager"
+              fetchPriority="high"
             />
           </div>
         </div>
