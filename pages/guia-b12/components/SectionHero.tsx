@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import HeroCta from './HeroCta'
 
 export default function SectionHero() {
@@ -48,18 +47,36 @@ export default function SectionHero() {
             <HeroCta />
           </div>
 
-          {/* Right — product mockup (Server Component = presente no HTML inicial = LCP descoberto imediatamente) */}
+          {/* Right — product mockup
+              srcset serve 480px no mobile (~14kB) e 1200px no desktop (~70kB)
+              fetchpriority=high + preload no <head> garantem LCP rápido */}
           <div className="flex-shrink-0 md:w-[45%] flex justify-center">
-            <Image
-              src="/mockup-dispositivos.webp"
-              alt="Guia de Suplementação da B12 em computador, tablet e celular"
-              width={768}
-              height={512}
-              className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
-              priority
-              loading="eager"
-              fetchPriority="high"
-            />
+            <picture>
+              {/* AVIF para browsers modernos */}
+              <source
+                type="image/avif"
+                srcSet="/mockup-dispositivos-sm.avif 480w, /mockup-dispositivos.avif 1200w"
+                sizes="(max-width: 768px) 480px, 600px"
+              />
+              {/* WebP fallback */}
+              <source
+                type="image/webp"
+                srcSet="/mockup-dispositivos-sm.webp 480w, /mockup-dispositivos.webp 1200w"
+                sizes="(max-width: 768px) 480px, 600px"
+              />
+              {/* img com dimensões explícitas para reservar espaço e evitar CLS */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mockup-dispositivos.webp"
+                alt="Guia de Suplementação da B12 em computador, tablet e celular"
+                width={768}
+                height={512}
+                className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

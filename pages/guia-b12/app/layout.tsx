@@ -33,6 +33,17 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        {/* Preload LCP image — srcset mobile/desktop para evitar download desnecessário */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <link
+          rel="preload"
+          as="image"
+          href="/mockup-dispositivos.webp"
+          // @ts-expect-error imagesrcset é válido em preload mas não está nos tipos do React
+          imagesrcset="/mockup-dispositivos-sm.webp 480w, /mockup-dispositivos.webp 1200w"
+          imagesizes="(max-width: 768px) 480px, 600px"
+          fetchPriority="high"
+        />
         {/* Meta Pixel — Dataset ID 1571028581053350 */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
