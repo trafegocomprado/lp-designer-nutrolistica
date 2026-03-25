@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+
+  --color-bg: #FAFAF8;
+  --color-primary: #1B5E40;
+  --color-amber: #E07B00;
+  --color-dark: #1A1A2E;
+  --color-section: #F0F4F0;
+  --color-badge-bg: #D6EAD6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  font-family: var(--font-dm-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair);
+}
+
+/* Scroll-reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger helpers */
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+.reveal-delay-5 { transition-delay: 500ms; }
+
+/* CTA button base */
+.btn-amber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E07B00;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-dm-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  line-height: 1.2;
+}
+
+.btn-amber:hover {
+  background-color: #c96e00;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(224, 123, 0, 0.35);
+}
+
+.btn-amber:active {
+  transform: translateY(0);
+}
+
+/* Badge pill */
+.badge-pill {
+  display: inline-block;
+  background-color: #D6EAD6;
+  color: #1B5E40;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-family: var(--font-dm-sans);
+  letter-spacing: 0.04em;
+}
+
+/* Card deliverable */
+.card-deliverable {
+  border-left: 4px solid #1B5E40;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Speech bubble */
+.speech-bubble {
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 20px 24px;
+  font-size: 16px;
+  font-style: italic;
+  color: #1A1A2E;
+  max-width: 380px;
+  position: relative;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
