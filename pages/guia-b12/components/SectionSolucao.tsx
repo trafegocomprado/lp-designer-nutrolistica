@@ -1,5 +1,3 @@
-'use client'
-
 const bullets = [
   {
     title: 'Qual forma de B12 faz mais sentido para o seu caso —',

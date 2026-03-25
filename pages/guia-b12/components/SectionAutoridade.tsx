@@ -1,5 +1,3 @@
-'use client'
-
 const credentials = [
   'Médica CRM/SP 158922',
   'Especialista em Nutrologia pela ABRAN em parceria com a Santa Casa de Misericórdia de São Paulo · RQE 131269',

@@ -1,5 +1,3 @@
-'use client'
-
 // Placeholder testimonials — to be replaced with real testimonials
 const testimonials = [
   {
