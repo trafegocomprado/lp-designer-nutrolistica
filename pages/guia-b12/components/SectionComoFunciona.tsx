@@ -1,7 +1,3 @@
-'use client'
-
-import Image from 'next/image'
-
 const steps = [
   {
     num: '1',
@@ -59,16 +55,24 @@ export default function SectionComoFunciona() {
             ))}
           </div>
 
-          {/* Mockup */}
+          {/* Mockup — abaixo do fold, lazy load */}
           <div className="flex-shrink-0 md:w-[42%] flex justify-center">
-            <Image
-              src="/mockup-dispositivos.webp"
-              alt="Guia de Suplementação da B12 em computador, tablet e celular"
-              width={768}
-              height={512}
-              className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
-              loading="lazy"
-            />
+            <picture>
+              <source media="(max-width: 768px)" type="image/avif" srcSet="/mockup-dispositivos-sm.avif" width={480} height={320} />
+              <source media="(min-width: 769px)" type="image/avif" srcSet="/mockup-dispositivos.avif" width={1200} height={800} />
+              <source media="(max-width: 768px)" type="image/webp" srcSet="/mockup-dispositivos-sm.webp" width={480} height={320} />
+              <source media="(min-width: 769px)" type="image/webp" srcSet="/mockup-dispositivos.webp" width={1200} height={800} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/mockup-dispositivos.webp"
+                alt="Guia de Suplementação da B12 em computador, tablet e celular"
+                width={768}
+                height={512}
+                className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

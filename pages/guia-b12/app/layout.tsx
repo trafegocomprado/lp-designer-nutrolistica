@@ -33,8 +33,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        {/* Preload LCP image — srcset mobile/desktop para evitar download desnecessário */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Preconnect para origens críticas */}
+        <link rel="preconnect" href="https://connect.facebook.net" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Preload LCP image — mobile recebe 14kB, desktop 70kB */}
         <link
           rel="preload"
           as="image"
@@ -43,7 +47,8 @@ export default function RootLayout({
           imageSizes="(max-width: 768px) 480px, 600px"
           fetchPriority="high"
         />
-        {/* Meta Pixel — Dataset ID 1571028581053350 */}
+
+        {/* Meta Pixel — carrega após window load para não bloquear LCP */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
@@ -54,10 +59,15 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1571028581053350');
-            fbq('track', 'PageView');
+            window.addEventListener('load', function() {
+              fbq('init', '1571028581053350');
+              fbq('track', 'PageView');
+            });
           `}
         </Script>
+      </head>
+      <body>
+        {/* Noscript pixel — imediatamente após <body> conforme spec Meta */}
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -68,8 +78,8 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   )
 }
