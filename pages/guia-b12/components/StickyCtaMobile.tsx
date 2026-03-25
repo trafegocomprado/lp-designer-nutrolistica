@@ -1,46 +1,78 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { trackContact } from '@/lib/trackContact'
 
 const CTA_LINK = 'https://pay.kiwify.com.br/9LRPR3r'
 
 export default function StickyCtaMobile() {
-  const [visible, setVisible] = useState(false)
-  const finalCtaRef = useRef<Element | null>(null)
+  const stickyRef = useRef<HTMLAnchorElement | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrolledPercent =
-        (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+    const el = stickyRef.current
+    if (!el) return
 
-      // Find the final CTA section to hide sticky when it's visible
-      const finalCta = document.getElementById('cta-final')
+    // Trigger de aparecimento: seção 5 (deliverables) — ~50% da página
+    const triggerShow = document.getElementById('deliverables')
+    // Trigger de ocultamento: CTA final — quando visível, esconde o sticky
+    const triggerHide = document.getElementById('cta-final')
 
-      if (finalCta) {
-        const rect = finalCta.getBoundingClientRect()
-        const isFinalCtaVisible = rect.top < window.innerHeight && rect.bottom > 0
+    if (!triggerShow) return
 
-        if (isFinalCtaVisible) {
-          setVisible(false)
-          return
-        }
-      }
+    // Observer 1 — mostra o sticky quando #deliverables entra na viewport
+    const showObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            el.style.transform = 'translateY(0)'
+            el.style.opacity = '1'
+          } else {
+            // Só oculta ao sair pelo topo (scrolling up antes da seção 5)
+            if (entry.boundingClientRect.top > 0) {
+              el.style.transform = 'translateY(100%)'
+              el.style.opacity = '0'
+            }
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-      setVisible(scrolledPercent >= 50)
+    // Observer 2 — oculta o sticky quando #cta-final fica visível
+    const hideObserver = triggerHide
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                el.style.transform = 'translateY(100%)'
+                el.style.opacity = '0'
+              } else {
+                // Só reexibe se já passou da seção 5 (cta-final saiu pelo fundo)
+                if (entry.boundingClientRect.top > 0) return
+                el.style.transform = 'translateY(0)'
+                el.style.opacity = '1'
+              }
+            })
+          },
+          { threshold: 0.1 }
+        )
+      : null
+
+    showObserver.observe(triggerShow)
+    if (triggerHide && hideObserver) hideObserver.observe(triggerHide)
+
+    return () => {
+      showObserver.disconnect()
+      hideObserver?.disconnect()
     }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  if (!visible) return null
 
   return (
     <a
+      ref={stickyRef}
       href={CTA_LINK}
       onClick={trackContact}
-      className="fixed bottom-0 left-0 right-0 z-[9999] flex items-center justify-center font-dm font-bold text-white uppercase tracking-wider transition-transform md:hidden"
+      className="fixed bottom-0 left-0 right-0 z-[9999] flex items-center justify-center font-dm font-bold text-white uppercase tracking-wider md:hidden"
       style={{
         background: '#E07B00',
         height: '56px',
@@ -48,6 +80,10 @@ export default function StickyCtaMobile() {
         letterSpacing: '0.04em',
         textDecoration: 'none',
         boxShadow: '0 -2px 12px rgba(0,0,0,0.15)',
+        // Estado inicial: oculto abaixo da viewport — sem scroll event
+        transform: 'translateY(100%)',
+        opacity: '0',
+        transition: 'transform 300ms ease, opacity 300ms ease',
       }}
       aria-label="Quero acesso — R$97"
     >
