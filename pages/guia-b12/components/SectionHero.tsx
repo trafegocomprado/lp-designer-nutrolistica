@@ -71,6 +71,7 @@ export default function SectionHero() {
               height={512}
               className="w-full max-w-sm md:max-w-none object-contain drop-shadow-xl"
               priority
+              loading="eager"
             />
           </div>
         </div>
