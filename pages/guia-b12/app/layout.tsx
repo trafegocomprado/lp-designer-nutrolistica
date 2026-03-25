@@ -39,9 +39,8 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="/mockup-dispositivos.webp"
-          // @ts-expect-error imagesrcset é válido em preload mas não está nos tipos do React
-          imagesrcset="/mockup-dispositivos-sm.webp 480w, /mockup-dispositivos.webp 1200w"
-          imagesizes="(max-width: 768px) 480px, 600px"
+          imageSrcSet="/mockup-dispositivos-sm.webp 480w, /mockup-dispositivos.webp 1200w"
+          imageSizes="(max-width: 768px) 480px, 600px"
           fetchPriority="high"
         />
         {/* Meta Pixel — Dataset ID 1571028581053350 */}
