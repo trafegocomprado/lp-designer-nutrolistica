@@ -41,17 +41,22 @@ export default function SectionIdentificacao() {
           {bubbles.map((bubble, i) => (
             <div
               key={i}
-              className={`flex ${
-                bubble.side === 'right'
-                  ? 'justify-end md:justify-end'
-                  : 'justify-start md:justify-start'
-              }`}
+              className="flex justify-center md:block"
             >
               <div
-                className="speech-bubble font-dm"
+                className="font-dm"
                 style={{
-                  borderBottomLeftRadius: bubble.side === 'left' ? '4px' : '20px',
-                  borderBottomRightRadius: bubble.side === 'right' ? '4px' : '20px',
+                  background: '#FFFFFF',
+                  borderRadius: '20px',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                  padding: '20px 24px',
+                  fontSize: '16px',
+                  fontStyle: 'italic',
+                  color: '#1A1A2E',
+                  lineHeight: 1.6,
+                  maxWidth: '78%',
+                  marginLeft: bubble.side === 'right' ? 'auto' : '0',
+                  marginRight: bubble.side === 'left' ? 'auto' : '0',
                 }}
               >
                 {/* Quote mark */}

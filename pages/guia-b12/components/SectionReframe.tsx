@@ -37,7 +37,7 @@ export default function SectionReframe() {
         </h2>
 
         {/* 2x2 grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           {cards.map((card, i) => (
             <div
               key={i}

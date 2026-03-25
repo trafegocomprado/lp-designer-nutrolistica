@@ -17,9 +17,9 @@ export default function SectionAutoridade() {
           Sobre a Criadora
         </p>
 
-        <div className="flex flex-col md:flex-row md:items-start md:gap-12">
+        <div className="flex flex-col md:flex-row md:items-start md:gap-10">
           {/* Photo */}
-          <div className="flex-shrink-0 flex flex-col items-center mb-8 md:mb-0 md:w-[280px]">
+          <div className="flex-shrink-0 flex flex-col items-center mb-8 md:mb-0 md:w-[240px]">
             <div
               className="rounded-full overflow-hidden flex items-center justify-center bg-[#F0F4F0]"
               style={{

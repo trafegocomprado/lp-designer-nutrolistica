@@ -38,7 +38,7 @@ export default function SectionHero() {
             {/* Subheadline */}
             <p className="font-dm text-[#1A1A2E] text-base sm:text-lg leading-relaxed mb-8 opacity-80 text-center md:text-left">
               Tabelas simples, videoaulas curtas e diretas que definem dose,
-              frequência e forma certa para o seu caso.
+              frequência e forma certa para o seu caso.{' '}
               <br className="hidden sm:block" />
               Sem contradições, sem achismo, sem dúvida sobrando.
             </p>

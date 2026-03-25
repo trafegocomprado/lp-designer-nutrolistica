@@ -83,7 +83,7 @@ export default function SectionSolucao() {
           >
             "A confusão vai embora. A segurança aparece.
             <br className="hidden sm:block" />
-            E dá para respirar melhor — sabendo que finalmente
+            E dá para respirar melhor — sabendo que finalmente{' '}
             <br className="hidden sm:block" />
             está cuidando de si do jeito certo."
           </p>
