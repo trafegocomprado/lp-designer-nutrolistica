@@ -7,9 +7,9 @@ export default function SectionHero() {
       className="bg-[#FAFAF8] pt-14 pb-16 md:pt-20 md:pb-24"
     >
       <div className="max-w-6xl mx-auto px-5 md:px-8">
-        <div className="flex flex-col-reverse md:flex-row md:items-center md:gap-12 lg:gap-16">
-          {/* Left — copy */}
-          <div className="flex-1 mt-8 md:mt-0">
+        <div className="flex flex-col md:flex-row md:items-center md:gap-12 lg:gap-16">
+          {/* Left — copy: order-1 em mobile (badges→H1→subheadline→CTA) */}
+          <div className="flex-1 order-1 md:order-none mb-8 md:mb-0">
             {/* Badges */}
             <div className="flex flex-col sm:flex-row flex-wrap gap-2 mb-6 justify-center md:justify-start">
               <span className="badge-pill">Para Vegetarianos e Veganos</span>
@@ -47,10 +47,10 @@ export default function SectionHero() {
             <HeroCta />
           </div>
 
-          {/* Right — product mockup
+          {/* Right — product mockup: order-2 em mobile (imagem por último)
               srcset serve 480px no mobile (~14kB) e 1200px no desktop (~70kB)
               fetchpriority=high + preload no <head> garantem LCP rápido */}
-          <div className="flex-shrink-0 md:w-[45%] flex justify-center">
+          <div className="flex-shrink-0 order-2 md:order-none md:w-[45%] flex justify-center">
             <picture>
               {/* AVIF para browsers modernos */}
               <source
